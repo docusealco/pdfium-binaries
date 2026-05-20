@@ -20,7 +20,6 @@ if [ "$TARGET_CPU" == "wasm" ]; then
     -s ENVIRONMENT=node,shell
     -msimd128
     -mbulk-memory
-    -s SUPPORT_LONGJMP=wasm
     -o "$BUILD_DIR/pdfium.html"
     "$LIBPDFIUMA"
     --no-entry
