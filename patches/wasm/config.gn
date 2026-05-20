@@ -4,4 +4,18 @@ config("compiler") {
     # https://github.com/emscripten-core/emscripten/issues/4932
     "_POSIX_C_SOURCE=200112",
   ]
+
+  cflags = [
+    "-O2",
+    "-flto",
+    "-msimd128",
+    "-mbulk-memory",
+  ]
+  cflags_cc = [
+    "-O2",
+    "-flto",
+    "-msimd128",
+    "-mbulk-memory",
+  ]
+  ldflags = [ "-flto" ]
 }
