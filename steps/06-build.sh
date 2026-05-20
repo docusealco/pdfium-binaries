@@ -17,6 +17,10 @@ if [ "$TARGET_CPU" == "wasm" ]; then
     -s EXPORTED_RUNTIME_METHODS="ccall,cwrap,addFunction,removeFunction"
     -s LLD_REPORT_UNDEFINED
     -s WASM=1
+    -s ENVIRONMENT=node,shell
+    -msimd128
+    -mbulk-memory
+    -s SUPPORT_LONGJMP=wasm
     -o "$BUILD_DIR/pdfium.html"
     "$LIBPDFIUMA"
     --no-entry
@@ -30,6 +34,7 @@ if [ "$TARGET_CPU" == "wasm" ]; then
     # O3 does not work! Strips out too much!
     EMCC_ARGS+=(
       -O2
+      -flto
     )
   fi
   em++ "${EMCC_ARGS[@]}"

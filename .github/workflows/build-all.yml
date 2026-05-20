@@ -90,6 +90,17 @@ jobs:
       target_environment: musl
       enable_v8: false
 
+  wasm:
+    name: WASM
+    uses: ./.github/workflows/build.yml
+    with:
+      branch: ${{ github.event.inputs.branch }}
+      version: ${{ github.event.inputs.version }}
+      is_debug: ${{ github.event.inputs.is_debug == 'true' }}
+      target_os: emscripten
+      target_cpu: wasm
+      enable_v8: false
+
   publish:
     name: Publish Release
     outputs:
@@ -106,6 +117,7 @@ jobs:
       - linux_x64
       - linux_musl_arm64
       - linux_musl_x64
+      - wasm
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v7
